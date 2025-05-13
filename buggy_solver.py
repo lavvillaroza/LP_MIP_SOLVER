@@ -6,6 +6,11 @@ def solve_buggy_lp():
     y = LpVariable("y", lowBound=0)
     prob += 3*x + 4*y
     prob += x + y <= 10
-    prob += 2*x + y <= 5  # Incorrect constraint (too restrictive)
+    prob += 2*x + y <= 5  # Incorrect constraint (too restrictive) #originally - 5
     prob.solve()
+    print('X=', x.varValue)
+    print('y=', y.varValue)
+    print('objective=', prob.objective.value())
     return {"x": x.varValue, "y": y.varValue, "objective": prob.objective.value()}
+
+solve_buggy_lp()
